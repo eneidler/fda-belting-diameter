@@ -3,7 +3,8 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  /* color-scheme: light dark; */
+  color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #363636;
 
@@ -36,6 +37,75 @@ header {
   text-align: center;
 }
 
+label {
+  padding: 4px;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  margin-top: .3em;
+  margin-bottom: .3em;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin: .25em;
+}
+
+h3 {
+  font-size: 1.3em;
+}
+
+.display-block input, label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-divider {
+  width: 25em;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.input-container input {
+  border-radius: 15px;
+  padding: .5em .25em;
+  margin: .5em 1.5em;
+  text-align: center;
+  max-width: 85px;
+}
+
+.vertical-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vertical-center button {
+  border-radius: 15px;
+}
+
+#line-select {
+  margin: .4em;
+  border-radius: 15px;
+  padding: .5em;
+  text-align: center;
+}
+
+#calculated-dia {
+  box-shadow: 0 0 .2em darkgray;
+  background-color: rgb(109, 111, 112);
+  border-radius: 15px;
+  padding: .4em;
+  margin: 0 2em;
+}
+
 #my-canvas {
   top: 50%;
   left: 50%;
@@ -44,16 +114,23 @@ header {
  position: fixed;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 #app-content {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+#content {
+  box-shadow: 0 0 1.3em rgb(32, 32, 32);
+  border-radius: 1em;
+  min-width: 650px;
+  min-height: 450px;
+}
+
+#content p, h3, img {
+  margin: 0 1.4em;
+  padding: 1.1em;
 }
 
 .logo {
@@ -89,14 +166,14 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  box-shadow: 0 0 .5em rgb(218, 218, 164);
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -107,4 +184,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

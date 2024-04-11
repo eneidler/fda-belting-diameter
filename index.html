@@ -13,9 +13,26 @@
     </header>
     <label for="line-select" id="line-select-label">Select a Manufacturing Line</label>
     <select id="line-select"></select>
-    <div id="app-content"></div>
-
-    <script type="module" src="/plant-data.js"></script>
+    <hr class="input-divider" />
+    <div class="input-container">
+      <div class="display-block">
+        <label for="input-length">Length (ft):</label>
+        <input type="number" id="input-length" />
+      </div>
+      <div class="display-block">
+        <label for="input-thickness">Thickness (in):</label>
+        <input type="number" id="input-thickness" />
+      </div>
+      <div class="display-block">
+        <label for="input-core-diameter">Core Diameter (in):</label>
+        <input type="number" id="input-core-diameter" /><br />
+      </div>
+    </div>
+    <div class="vertical-center">
+      <button id="calculate-diameter" onclick="calculateClickHandler()">Calculate</button>
+      <p id="calculated-dia"></p>
+    </div>
     <script type="module" src="/main.js"></script>
+    <div id="app-content"></div>
   </body>
 </html>
