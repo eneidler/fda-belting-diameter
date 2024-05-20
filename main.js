@@ -20,7 +20,7 @@ document.getElementById('line-select-label').innerText = "Select a Manufacturing
 // Handles the DOM changes for switching the line select dropdown
 function changeHandler(){
   const result = production_lines.filter((line) => lineSelectionDropdown.options[lineSelectionDropdown.selectedIndex].text === line.name);
-  document.getElementById('content').innerHTML = ` ${result.map((item) => (`<h3>${item.name}</h3><p>${item.description}</p><img src=${item.image} alt=${item.name}/>`))}`
+  document.getElementById('content').innerHTML = ` ${result.map((item) => (`<h3>${item.name}</h3><p>${item.description}</p>`))}` // <img src=${item.image} alt=${item.name}/>
 }
 
 // This is the id of the button
