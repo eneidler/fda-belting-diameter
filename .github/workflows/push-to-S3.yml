@@ -19,4 +19,4 @@ jobs:
           aws-region: us-east-1
       - name: Sync files to S3 bucket
         run: |
-          aws s3 sync .github/workflows s3://stack-byte.net --delete
+          aws s3 sync dist/assets s3://www.retentionnely.com --delete
