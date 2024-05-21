@@ -1,30 +1,60 @@
 name: Push to S3
 
 on:
-  push:
+  # push:
 
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: ["18.x", "20.x"]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.5
-        
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm install
+      - run: npm run build --if-present
+
+      # Store the dist folder
+      - uses: actions/upload-artifiact@v4.3.3
+        with:
+          name: app-build
+          path: dist
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build]
+
+    steps:
+      #Get the dist folder
+      - name: Download build artifacts
+        uses: actions/dowload-artifacts@v4.1.7
+        with:
+          name: app-build
+
       - name: Setup AWS CLI
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-     
+
       - name: Sync files to S3 bucket
         run: |
-          aws s3 sync dist s3://www.retentionnely.com --delete
+          aws s3 sync app-build s3://www.retentionnely.com --delete
 
       # Clears the CloudFront cache to force update of newly added files, without needing to change
       # the overall cache policy to a different Default TTL
-      - name: Create CloudFront file Invalidation 
+      - name: Create CloudFront file Invalidation
         run: |
           aws cloudfront create-invalidation --distribution-id E1J8I1S8OBR4TH --paths "/*"
