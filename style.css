@@ -124,13 +124,21 @@ h3 {
 #content {
   box-shadow: 0 0 1.3em rgb(32, 32, 32);
   border-radius: 1em;
-  min-width: 650px;
-  min-height: 450px;
+  min-width: 550px;
+  min-height: 250px;
 }
 
 #content p, h3, img {
   margin: 0 1.4em;
   padding: 1.1em;
+}
+
+.dia-okay {
+  background-color: green;
+}
+
+.dia-not-okay {
+  background-color: red;
 }
 
 .logo {
