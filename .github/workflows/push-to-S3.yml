@@ -36,6 +36,12 @@ jobs:
     needs: [build]
 
     steps:
+        #Get the dist folder
+      - name: Download build artifacts
+        uses: actions/dowload-artifact@v4.1.7
+        with:
+          name: app-build
+          
       - name: Setup AWS CLI
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -44,11 +50,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Sync files to S3 bucket
-        # Get the dist folder
-        uses: actions/download-artifact@v4.1.7
-        with:
-          name: app-build
-      - run: |
+        run: |
           aws s3 sync dist s3://www.retentionnely.com --delete
 
       # Clears the CloudFront cache to force update of newly added files, without needing to change
