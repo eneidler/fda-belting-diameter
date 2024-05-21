@@ -51,7 +51,7 @@ jobs:
 
       - name: Sync files to S3 bucket
         run: |
-          aws s3 sync app-build s3://www.retentionnely.com --delete
+          aws s3 sync dist s3://www.retentionnely.com --delete
 
       # Clears the CloudFront cache to force update of newly added files, without needing to change
       # the overall cache policy to a different Default TTL
