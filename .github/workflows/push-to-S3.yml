@@ -11,12 +11,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.5
+        
       - name: Setup AWS CLI
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
+     
       - name: Sync files to S3 bucket
         run: |
           aws s3 sync dist s3://www.retentionnely.com --delete
+
+      # Clears the CloudFront cache to force update of newly added files, without needing to change
+      # the overall cache policy to a different Default TTL
+      - name: Create CloudFront file Invalidation 
+        run: |
+          aws cloudfront create-invalidation --distribution-id E1J8I1S8OBR4TH --paths "/*"
