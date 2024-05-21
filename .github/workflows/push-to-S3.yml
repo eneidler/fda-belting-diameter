@@ -26,7 +26,7 @@ jobs:
       - run: npm run build --if-present
 
       # Store the dist folder
-      - uses: actions/upload-artifiact@v4.3.3
+      - uses: actions/upload-artifact@v4.3.3
         with:
           name: app-build
           path: dist
@@ -38,7 +38,7 @@ jobs:
     steps:
       #Get the dist folder
       - name: Download build artifacts
-        uses: actions/dowload-artifacts@v4.1.7
+        uses: actions/dowload-artifact@v4.1.7
         with:
           name: app-build
 
