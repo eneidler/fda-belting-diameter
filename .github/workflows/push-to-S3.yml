@@ -36,7 +36,7 @@ jobs:
     needs: [build]
 
     steps:
-        run: mkdir ./dist
+      - run: mkdir ./dist
 
         #Get the dist folder
       - name: Download build artifacts
